@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: campus-food-helper
+  datasource:
+    url: jdbc:mysql://localhost:3306/campus_food?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+  jackson:
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+
+sa-token:
+  token-name: Authorization
+  token-prefix: Bearer
+  timeout: 604800
+  active-timeout: -1
+  is-concurrent: true
+  is-share: false
+  token-style: uuid
+  is-read-cookie: false
+  is-read-header: true
+  is-log: false
+agent:
+  max-tool-calls: 5
+  max-model-rounds: 6
+  round-timeout: 60s
+  tool-timeout: 5s
+  max-history-messages: 20
+  llm:
+    base-url: ${DEEPSEEK_BASE_URL:https://api.deepseek.com}
+    api-key: ${DEEPSEEK_API_KEY:}
+    model: ${DEEPSEEK_MODEL:deepseek-chat}
+    temperature: 0.7
+    connect-timeout: 10s
+    request-timeout: 30s
+    mock-enabled: false
